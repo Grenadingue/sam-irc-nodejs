@@ -19,13 +19,22 @@
     "eip"
   ],
   "author": {
-    "name" : "Nicolas Chauvin",
-    "email" : "chauvin.nico@gmail.com",
-    "url" : "https://github.com/Grenadingue"
+    "name": "Nicolas Chauvin",
+    "email": "chauvin.nico@gmail.com",
+    "url": "https://github.com/Grenadingue"
   },
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/Grenadingue/sam-irc-nodejs/issues"
   },
-  "homepage": "https://github.com/Grenadingue/sam-irc-nodejs#readme"
+  "homepage": "https://github.com/Grenadingue/sam-irc-nodejs#readme",
+  "dependencies": {
+    "cluster": "^0.7.7",
+    "electron-bin": "^0.26.0-1",
+    "express": "^4.13.4",
+    "istanbul": "^0.4.2",
+    "jasmine": "^2.4.1",
+    "sequelize": "^3.19.1",
+    "socket.io": "^1.4.5"
+  }
 }
