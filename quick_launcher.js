@@ -2,7 +2,7 @@
 
 const spawn = require("child_process").spawn;
 const server = spawn("node", ["./server/server.js"]);
-const client = spawn("node", ["./client/client.js"]);
+const client = spawn("./client/node_modules/electron-prebuilt/dist/electron", ["./client/client.js"]);
 
 server.stdout.on("data", (data) => {
     console.log(`stdout: ${data}`);

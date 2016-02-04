@@ -1,0 +1,37 @@
+{
+  "name": "sam-irc-nodejs",
+  "version": "1.0.0",
+  "description": "Mini multiclients IRC to learn node",
+  "main": "quick_launcher.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Grenadingue/sam-irc-nodejs.git"
+  },
+  "keywords": [
+    "node",
+    "node.js",
+    "learning",
+    "project",
+    "irc",
+    "eip"
+  ],
+  "author": {
+    "name": "Nicolas Chauvin",
+    "email": "chauvin.nico@gmail.com",
+    "url": "https://github.com/Grenadingue"
+  },
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Grenadingue/sam-irc-nodejs/issues"
+  },
+  "homepage": "https://github.com/Grenadingue/sam-irc-nodejs#readme",
+  "dependencies": {
+    "electron-prebuilt": "^0.36.7",
+    "istanbul": "^0.4.2",
+    "jasmine": "^2.4.1",
+    "socket.io": "^1.4.5"
+  }
+}

@@ -30,7 +30,6 @@
   "homepage": "https://github.com/Grenadingue/sam-irc-nodejs#readme",
   "dependencies": {
     "cluster": "^0.7.7",
-    "electron-bin": "^0.26.0-1",
     "express": "^4.13.4",
     "istanbul": "^0.4.2",
     "jasmine": "^2.4.1",
