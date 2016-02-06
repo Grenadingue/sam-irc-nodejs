@@ -33,6 +33,7 @@
     "express": "^4.13.4",
     "istanbul": "^0.4.2",
     "jasmine": "^2.4.1",
+    "mysql": "^2.10.2",
     "sequelize": "^3.19.1",
     "socket.io": "^1.4.5"
   }

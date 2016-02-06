@@ -2,12 +2,25 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Sam IRC - Home</title>
+    <link type="text/css" rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    <h1>Home</h1>
+      <div id="wrapper">
+          <div id="menu">
+              <p class="welcome">Welcome</p>
+              <p class="signinup">
+                <a id="exit" href="http://localhost:8080/signin.html">Sign-In</a> /
+                <a id="exit" href="http://localhost:8080/signup.html">Sign-Up</a>
+              </p>
+              <div style="clear:both"></div>
+          </div>
+          <div id="chatbox"></div>
+          <!-- <form name="message" action="">
+              <input name="usermsg" type="text" id="usermsg" size="63" />
+              <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
+          </form> -->
+      </div>
   </body>
 </html>
