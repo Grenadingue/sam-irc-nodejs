@@ -1,11 +1,13 @@
 #!/usr/bin/env electron
 
+// Include application configuration file
+const conf = require('./config/app.config.json');
+
+// Include and initialize electron
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
 var mainWindow = null;
 
 app.on('window-all-closed', function () {
@@ -14,17 +16,17 @@ app.on('window-all-closed', function () {
 
 app.on('ready', function () {
   mainWindow = new BrowserWindow({
-    width: 800,
+    width: conf.debug ? 1200 : 800,
     height: 600,
     center: true,
   });
 
-  mainWindow.loadURL('http://localhost:8080/index.html');
+  if (conf.debug)
+    mainWindow.webContents.openDevTools();
+
+  mainWindow.loadURL('http://' + conf.remote.host + ':' + conf.remote.port + '/index.html');
 
   mainWindow.on('closed', function () {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
     mainWindow = null;
   });
 });
