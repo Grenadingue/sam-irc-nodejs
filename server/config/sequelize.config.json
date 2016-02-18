@@ -1,0 +1,7 @@
+{
+    "host": "localhost",
+    "database": "sam_irc",
+    "username": "archy",
+    "password": "bar",
+    "dialect": "mariadb"
+}
