@@ -1,13 +1,13 @@
-function initExpress(express, app, folder)
+function initExpress(express, app, rootFolder)
 {
   // Serve static files
-  app.use(express.static(folder + '/www/html/'));
-  app.use(express.static(folder + '/www/css/'));
-  app.use(express.static(folder + '/www/js/'));
+  app.use(express.static(rootFolder + '/www/html/'));
+  app.use(express.static(rootFolder + '/www/css/'));
+  app.use(express.static(rootFolder + '/www/js/'));
 
   // Serve jQuery
   app.get('/jquery/jquery.js', function (req, res) {
-    res.sendFile(folder + '/node_modules/jquery/dist/jquery.min.js');
+    res.sendFile(rootFolder + '/node_modules/jquery/dist/jquery.min.js');
   });
 
   // Post requests
