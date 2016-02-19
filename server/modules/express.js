@@ -17,9 +17,8 @@ function initExpress(express, app, rootFolder, passport, orm)
 
   // Get requests
   app.get('/irc.html', function (req, res) {
-      res.render('irc', { user:  req.user });
-    }
-  );
+    res.render('irc', { user:  req.user });
+  });
 
   // Post requests
   app.post('/sign-in',
@@ -30,32 +29,10 @@ function initExpress(express, app, rootFolder, passport, orm)
   );
 
   app.post('/sign-up',
-    function signUpUser(req, res) {
-      const username = req.body.username;
-      const password = req.body.password;
-      const confirmation = req.body.confirmation;
-
-      console.log('sign-up');
-      if (username.length && password.length && confirmation.length && password == confirmation) {
-        orm.Users.findOne({
-          attributes: ['username', 'password', 'id'],
-          where: { username: username },
-        }).then(function (user) {
-          if (!user) {
-            orm.Users
-              .create({ username: username, password: password })
-              .then(function (user) {
-                console.log(user.get('username') + '|' + user.get('password') + '|' + user.get('id'));
-                res.redirect('/index.html');
-              }
-            );
-          } else {
-            console.log('user already exists');
-            res.redirect('/index.html');
-          }
-        });
-      }
-    }
+    passport.createUser(orm, {
+      successRedirect: '/index.html',
+      failureRedirect: '/index.html',
+    })
   );
 }
 
