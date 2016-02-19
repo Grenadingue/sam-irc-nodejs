@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sam IRC - Home</title>
+    <link type="text/css" rel="stylesheet" href="/irc.css" />
+  </head>
+  <body>
+    <% if (!user) { %>
+    	<p>An error occured, please <a href="/index.html">log in</a> again</p>
+    <% } else { %>
+      <ul id="messages"></ul>
+      <form action="">
+        <input id="m" autocomplete="off" /><button>Send</button>
+      </form>
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="/jquery/jquery.js" onload="window.$ = window.jQuery = module.exports;"></script>
+      <script> const userid = <%= user.id %>; </script>
+      <script src="/irc.js"></script>
+    <% } %>
+  </body>
+</html>
