@@ -21,8 +21,9 @@ app.on('ready', function () {
     center: true,
   });
 
-  if (conf.debug)
+  if (conf.debug) {
     mainWindow.webContents.openDevTools();
+  }
 
   mainWindow.loadURL('http://' + conf.remote.host + ':' + conf.remote.port + '/index.html');
 
