@@ -29,10 +29,7 @@
   },
   "homepage": "https://github.com/Grenadingue/sam-irc-nodejs#readme",
   "dependencies": {
-    "electron-prebuilt": "^0.36.7",
-    "istanbul": "^0.4.2",
-    "jasmine": "^2.4.1",
-    "socket.io": "^1.4.5"
+    "electron-prebuilt": "^0.36.7"
   },
   "jshintConfig": {
     "esnext": true
