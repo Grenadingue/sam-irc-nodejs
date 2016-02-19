@@ -1,9 +1,14 @@
 function initSequelize(rootFolder)
 {
-  var Sequelize = require('sequelize');
-  var conf = require(rootFolder + '/config/sequelize.config.json');
+  const Sequelize = require('sequelize');
+  const conf = require(rootFolder + '/config/sequelize.config.json');
+  const usersModel = require(rootFolder + '/models/Users.js');
+  const orm = {
+    sequelize: null,
+    Users: null,
+  };
 
-  return new Sequelize(conf.database, conf.username, conf.password, {
+  orm.sequelize = new Sequelize(conf.database, conf.username, conf.password, {
     host: conf.host,
     dialect: conf.dialect,
     pool: {
@@ -12,6 +17,10 @@ function initSequelize(rootFolder)
       idle: 10000,
     },
   });
+
+  orm.Users = usersModel.init(orm, Sequelize);
+
+  return orm;
 }
 
 module.exports = initSequelize;
