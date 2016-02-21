@@ -15,4 +15,20 @@ This other project fits in my international exchange program, between Epitech an
 The second purpose of this work, as you can see by reading this readme, is **demonstration**.
 
 ## Usage
-Please wait a bit, it's not finished yet.
+### Setup
+```
+$> npm run preinstall
+$> npm install
+```
+
+### Run
+#### In one termnial (quickier)
+```
+$> node quick_launcher.js
+```
+
+#### In two different terminals (best log output)
+```
+$> node server/server.js
+$> ./client/node_modules/electron-prebuilt/dist/electron client/client.js
+```
