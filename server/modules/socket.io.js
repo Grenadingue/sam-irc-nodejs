@@ -3,7 +3,7 @@ function initSocketIo(io, orm, rootFolder)
   const ircController = require(rootFolder + '/controllers/irc.js');
   const helloCluster = require(rootFolder + '/controllers/helloCluster.js');
 
-  helloCluster.init(rootFolder, 8000);
+  helloCluster.init(rootFolder, 8000, rootFolder + '/cpp/hello.js');
 
   io.on('connection', function (socket) {
     var currentUser = null;
