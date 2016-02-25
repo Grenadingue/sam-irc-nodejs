@@ -17,14 +17,15 @@ The second purpose of this work, as you can see by reading this readme, is **dem
 ## Usage
 ### Setup
 ```
-$> npm run preinstall
+$> git clone https://github.com/Grenadingue/sam-irc-nodejs.git
+$> cd sam-irc-nodejs
 $> npm install
 ```
 
 ### Run
 #### In one termnial (quickier)
 ```
-$> node quick_launcher.js
+$> npm run
 ```
 
 #### In two different terminals (best log output)
