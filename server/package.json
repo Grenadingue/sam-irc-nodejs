@@ -5,7 +5,8 @@
   "main": "quick_launcher.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "cd ./cpp && node-gyp configure && node-gyp build"
+    "install": "cd ./cpp && node-gyp configure && node-gyp build",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

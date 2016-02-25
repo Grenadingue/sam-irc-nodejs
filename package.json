@@ -1,11 +1,14 @@
 {
   "name": "sam-irc-nodejs",
   "version": "1.0.0",
-  "description": "Mini multiclients IRC to learn node",
-  "main": "client.js",
+  "description": "A Node.js/Electron mini-IRC client/server to say \"Hello world\" !",
+  "main": "quick_launcher.js",
+  "dependencies": {},
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/electron-prebuilt/dist/electron client.js"
+    "install": "cd ./server && npm install && cd .. && cd ./client && npm install",
+    "start": "node quick_launcher.js"
   },
   "repository": {
     "type": "git",
@@ -28,11 +31,5 @@
   "bugs": {
     "url": "https://github.com/Grenadingue/sam-irc-nodejs/issues"
   },
-  "homepage": "https://github.com/Grenadingue/sam-irc-nodejs#readme",
-  "dependencies": {
-    "electron-prebuilt": "^0.36.7"
-  },
-  "jshintConfig": {
-    "esnext": true
-  }
+  "homepage": "https://github.com/Grenadingue/sam-irc-nodejs#readme"
 }
