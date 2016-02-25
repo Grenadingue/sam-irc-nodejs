@@ -29,9 +29,7 @@ function initSocketIo(io, orm, rootFolder)
     });
 
     socket.on('disconnect', function (data) {
-      currentUser.active = false;
-      currentUser.save();
-      io.emit('notification', '[21:21] Notification: ' + currentUser.username + ' is now disconnected');
+      ircController.disconnectUser(currentUser, io);
     });
 
     socket.on('user_input', function (data) {
