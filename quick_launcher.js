@@ -1,8 +1,10 @@
+#!/usr/bin/env node
+
 // Quick launcher that launch an instance of the server and one the client
 
-const spawn = require("child_process").spawn;
-const server = spawn("node", ["./server/server.js"]);
-const client = spawn("./client/node_modules/electron-prebuilt/dist/electron", ["./client/client.js"]);
+const exec = require("child_process").spawn;
+const server = exec("node", ["./server/server.js"]);
+const client = exec("./client/node_modules/electron-prebuilt/dist/electron", ["./client/client.js"]);
 
 server.stdout.on("data", (data) => {
     console.log(`stdout: ${data}`);
