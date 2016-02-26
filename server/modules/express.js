@@ -16,9 +16,12 @@ function initExpress(express, app, rootFolder, passport, orm)
   });
 
   // Get requests
-  app.get('/irc.html', function (req, res) {
-    res.render('irc', { user:  req.user });
-  });
+  app.get('/irc.html',
+    require('connect-ensure-login').ensureLoggedIn(),
+    function (req, res) {
+      res.render('irc', { user:  req.user });
+    }
+  );
 
   // Post requests
   app.post('/sign-in',
@@ -33,6 +36,13 @@ function initExpress(express, app, rootFolder, passport, orm)
       successRedirect: '/index.html',
       failureRedirect: '/index.html',
     })
+  );
+
+  app.get('/logout',
+    function (req, res) {
+      req.logout();
+      res.redirect('/index.html');
+    }
   );
 }
 

@@ -8,6 +8,9 @@
     <% if (!user) { %>
     	<p>An error occured, please <a href="/index.html">log in</a> again</p>
     <% } else { %>
+      <div>
+        <center>Hi <%= user.username %>, click on the link to <a href="/logout">log out</a></center>
+      </div>
       <ul id="messages"></ul>
       <form action="">
         <input id="m" autocomplete="off" /><button>Send</button>
