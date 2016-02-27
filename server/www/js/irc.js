@@ -1,28 +1,29 @@
 const socket = io();
-var username = '<undefined_user>';
-
-$('form').submit(function () {
-  socket.emit('user_input', $('#m').val());
-  $('#m').val('');
-  return false;
-});
-
-socket.on('identification', function (data) {
-  socket.emit('identification', { userid: userid });
-});
+const passport = {
+  id: null,
+  name: null,
+};
 
 socket.on('passport', function (data) {
-  if (data.userid == userid) {
-    username = data.username;
-  } else {
-    console.log('An error occured, wrong user id');
-  }
+  passport.id = data.id;
+  passport.name = data.name;
+
+  $('form').submit(function () {
+    socket.emit('user_input', $('#m').val());
+    $('#m').val('');
+    return false;
+  });
 });
 
-socket.on('user_input', function (data) {
+function addMessage(data) {
   $('#messages').append($('<li>').text(data));
+  $('#messages li:last')[0].scrollIntoView();
+}
+
+socket.on('user_input', function (data) {
+  addMessage(data);
 });
 
 socket.on('notification', function (data) {
-  $('#messages').append($('<li>').text(data));
+  addMessage(data);
 });

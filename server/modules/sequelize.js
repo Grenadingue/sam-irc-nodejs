@@ -1,9 +1,9 @@
-function initSequelize(rootFolder)
+function initSequelize(Sequelize, Store, rootFolder)
 {
-  const Sequelize = require('sequelize');
   const conf = require(rootFolder + '/config/sequelize.config.json');
   const usersModel = require(rootFolder + '/models/Users.js');
   const orm = {
+    Sequelize: Sequelize,
     sequelize: null,
     Users: null,
   };
@@ -18,7 +18,12 @@ function initSequelize(rootFolder)
     },
   });
 
+  orm.store = new Store(orm.sequelize);
+
   orm.Users = usersModel.init(orm, Sequelize);
+  orm.Users.belongsTo(orm.store.Session, { foreignKeyConstraint: true });
+
+  orm.sequelize.sync({ force: false });
 
   return orm;
 }

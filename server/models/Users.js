@@ -3,6 +3,7 @@ module.exports.init = function (orm, Sequelize) {
     username: {
       type: Sequelize.STRING,
       allowNull: false,
+      unique: true,
     },
     password: {
       type: Sequelize.STRING,
@@ -24,10 +25,8 @@ module.exports.init = function (orm, Sequelize) {
   };
 
   orm.Users.createUser = function (username, password) {
-    return orm.Users.create({ username: username, password: password });
+    return orm.Users.create({ username: username, password: password, active: false });
   };
-
-  orm.Users.sync({ force: false });
 
   return orm.Users;
 };

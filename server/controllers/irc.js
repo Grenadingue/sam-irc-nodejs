@@ -12,8 +12,8 @@ function sendNotification(socket, message) {
   socket.emit('notification', time() + ' Notification: ' + message);
 }
 
-function sendUserMessage(socket, data, currentUser) {
-  socket.emit('user_input', time() + ' ' + currentUser.username + ': ' + data);
+function sendUserMessage(socket, data, user) {
+  socket.emit('user_input', time() + ' ' + user.username + ': ' + data);
 }
 
 // Available user commands '/something' and their bindings
@@ -52,7 +52,7 @@ function publicCommand(words, socket, io) {
 }
 
 // Find user command and process it
-function processUserCommand(socket, io, words, currentUser) {
+function processUserCommand(socket, io, words, user) {
   const userCommand = userCommands[words[0]];
 
   if (userCommand) {
@@ -63,22 +63,43 @@ function processUserCommand(socket, io, words, currentUser) {
 }
 
 // Find is user input is a command and process it
-module.exports.processUserInput = function (io, socket, data, currentUser) {
+module.exports.processUserInput = function (io, socket, data, user) {
   const words = data.split(' ').filter(function isNotEmpty(currentValue) {
     return (currentValue !== '');
   });
 
   console.log(words);
   if (words[0] && words[0][0] == '/') {
-    processUserCommand(socket, io, words, currentUser);
+    processUserCommand(socket, io, words, user);
   } else if (words[0]) {
-    sendUserMessage(io, data, currentUser);
+    sendUserMessage(io, data, user);
   }
 };
 
+// Connect a user
+module.exports.connectUser = function (socket, io, orm, user, helloCluster) {
+  console.log('|| username = ' + user);
+  orm.Users.findOne({ where: { id: user.id } })
+  .then(function (foundUser) {
+    if (foundUser) {
+      user.model = foundUser;
+      console.log('User identified = ' + user.model.username + ' | ' + user.model.id);
+      socket.emit('passport', { id: user.model.id, name: user.model.username });
+      if (!user.model.active) {
+        sendNotification(io, user.username + ' is now connected');
+        user.model.active = true;
+        user.model.save();
+        helloCluster.work(socket, 'notification');
+      }
+    } else {
+      console.log('Fuck, user not found !');
+    }
+  });
+};
+
 // Disconnect a user
-module.exports.disconnectUser = function (currentUser, io) {
-  currentUser.active = false;
-  currentUser.save();
-  sendNotification(io, currentUser.username + ' is now disconnected');
+module.exports.disconnectUser = function (io, user) {
+  user.model.active = false;
+  user.model.save();
+  sendNotification(io, user.model.username + ' is now disconnected');
 };
