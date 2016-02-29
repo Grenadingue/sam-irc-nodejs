@@ -24,7 +24,7 @@ module.exports.work = function (clientSocket, eventName) {
 
   workerSocket.on('job done', function (data) {
     console.log('Worker job done');
-    clientSocket.emit(eventName, data);
+    clientSocket.emit(eventName, { channel: 'public', message: '[00:42] ' + data });
     worker.destroy();
   });
 

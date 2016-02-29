@@ -15,6 +15,7 @@ function initSocketIo(io, orm, passportSocketIo, cookieParser, rootFolder)
   const helloCluster = require(rootFolder + '/controllers/helloCluster.js');
   const ircController = require(rootFolder + '/controllers/irc.js');
 
+  ircController.passportSocketIo = passportSocketIo;
   helloCluster.init(rootFolder, 8000, rootFolder + '/cpp/hello.js');
 
   io.use(passportSocketIo.authorize({
@@ -29,15 +30,15 @@ function initSocketIo(io, orm, passportSocketIo, cookieParser, rootFolder)
   io.on('connection', function (socket) {
     const user = socket.request.user;
 
-    ircController.connectUser(socket, io, orm, user, helloCluster);
-
     socket.on('disconnect', function (data) {
       ircController.disconnectUser(io, user);
     });
 
-    socket.on('user_input', function (data) {
-      ircController.processUserInput(io, socket, data, user);
+    socket.on('user message', function (data) {
+      ircController.processUserInput(io, socket, data, user, orm);
     });
+
+    ircController.connectUser(socket, io, orm, user, helloCluster);
   });
 }
 
